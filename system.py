@@ -1,8 +1,7 @@
-
 import pandas as pd
 from dotenv import load_dotenv
 import sys, os
-sys.path.insert(0, os.path.join(os.getcwd(), "agentpro"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "agentpro"))
 load_dotenv()
 # Configure OpenAI client to use OpenRouter (set via environment variables)
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENROUTER_API_KEY")
@@ -14,6 +13,7 @@ import joblib
 from agentpro.agentpro import AgentPro, AresInternetTool, YouTubeSearchTool
 from diabetes_tool import DiabetesPredictionTool
 
+# ...existing code...
 # Initialize tools and agent
 try:
     diabetes_tool = DiabetesPredictionTool(
