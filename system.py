@@ -1,7 +1,8 @@
-import os
+
 import pandas as pd
 from dotenv import load_dotenv
-
+import sys, os
+sys.path.insert(0, os.path.join(os.getcwd(), "agentpro"))
 load_dotenv()
 # Configure OpenAI client to use OpenRouter (set via environment variables)
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENROUTER_API_KEY")
