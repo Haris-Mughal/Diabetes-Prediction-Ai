@@ -7,3 +7,7 @@ youtube_transcript_api
 duckduckgo-search
 requests
 python-dotenv
+matplotlib
+seaborn
+agentpro  # if you’ve published it or install via -e .
+

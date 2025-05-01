@@ -1,38 +1,39 @@
-from agentpro import AgentPro
-from agentpro.tools import AresInternetTool, CodeEngine, YouTubeSearchTool, SlideGenerationTool # ADD MORE TOOLS WHEN AVAILABLE
 import os
-import dotenv
+from agentpro import AgentPro
+from agentpro.tools import DuckDuckGoTool, CalculateTool, UserInputTool, AresInternetTool, YFinanceTool
+
+
 def main():
-    dotenv.load_dotenv()
-    if not os.environ.get("OPENAI_API_KEY"):
-        print("Error: OPENAI_API_KEY environment variable is not set.")
-        print("Please set it before running the agent.")
-        return
-    if not os.environ.get("TRAVERSAAL_ARES_API_KEY"):
-        print("Warning: TRAVERSAAL_ARES_API_KEY environment variable is not set.")
-        print("AresInternetTool will not be available.")
-        tools = [CodeEngine(), YouTubeSearchTool(), SlideGenerationTool()]
-    else:
-        tools = [AresInternetTool(), CodeEngine(), YouTubeSearchTool(), SlideGenerationTool()] # ADD MORE TOOLS WHEN AVAILABLE
-    if not os.environ.get("OPENROUTER_API_KEY"):
-        print("Warning: OPENROUTER_API_KEY environment variable is not set.")
-        print("OpenRouter functionality may be limited.")
-    if not os.environ.get("MODEL_NAME"):
-        print("Warning: MODEL_NAME environment variable is not set.")
-        print("Default model (GPT-4o-mini) will be used.")    
-    agent = AgentPro(tools=tools)
-    print("AgentPro is initialized and ready. Enter 'quit' to exit.")
-    print("Available tools:")
-    for tool in tools:
-        print(f"- {tool.name}: {tool.description}")
-    while True:
-        user_input = input("\nEnter your query: ")
-        if user_input.lower() in ["quit", "exit", "q"]:
-            break
-        try:
-            response = agent(user_input)
-            print(f"\nAgent Response:\n{response}")
-        except Exception as e:
-            print(f"Error: {e}")
+    try:
+        # Instantiate your tools
+        tools = [
+            DuckDuckGoTool(),
+            CalculateTool(),
+            UserInputTool(),
+            AresInternetTool(api_key=os.getenv("ARES_API_KEY", None)),
+            YFinanceTool()
+        ]
+        myagent = AgentPro(model=os.getenv("OPENAI_API_KEY", None), tools=tools, max_iterations=20)
+        
+        query = input("Enter your Query : ")
+        response = myagent.run(query)
+
+        print("=" * 50 + " FINAL Thought Process:")
+        for step in response.thought_process:
+            if step.pause_reflection:
+                print(f"✅ Pause: {step.pause_reflection}")
+            if step.thought:
+                print(f"✅ Thought: {step.thought}")
+            if step.action:
+                print(f"✅ Action: {step.action.model_dump_json()}")
+            if step.observation:
+                print(f"✅ Observation: {step.observation.result}")
+        
+        print(f"\n✅ Final Answer: {response.final_answer}")
+    
+    except Exception as e:
+        print(f"Error running agent: {e}")
+
 if __name__ == "__main__":
     main()
+
