@@ -17,6 +17,15 @@ Welcome to the **Diabetes Prediction Agentic AI** — a modern, modular, and age
 
 ---
 
+
+## 👥 Team Members
+
+| [![Haris Mughal](https://github.com/haris-mughal.png?size=100)](https://github.com/harismughal)<br>Haris Mughal | [![John Doe](https://github.com/alijafarkamal.png?size=100)](https://github.com/alijafarkamal)<br>Ali Jafar | [![Jane Smith](https://github.com/zohaib-7035.png?size=100)](https://github.com/zohaib-7035)<br>Zohaib | [![Alex Johnson](https://github.com/Noor-Fatima-Afzal.png?size=100)](https://github.com/Noor-Fatima-Afzal)<br>Noor Fatima |
+|---|---|---|---|
+
+
+---
+
 ## 🧩 Project Structure
 
 ```
