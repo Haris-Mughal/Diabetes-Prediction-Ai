@@ -9,5 +9,3 @@ requests
 python-dotenv
 matplotlib
 seaborn
-agentpro  # if you’ve published it or install via -e .
-
