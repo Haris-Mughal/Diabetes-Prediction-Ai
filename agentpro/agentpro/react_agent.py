@@ -1,7 +1,7 @@
 from typing import List
 import requests
 import json
-import openai
+# import openai
 from .tools import Tool
 from .agent import Action, Observation, ThoughtStep, AgentResponse
 
