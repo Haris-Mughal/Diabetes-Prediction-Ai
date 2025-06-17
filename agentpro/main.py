@@ -13,7 +13,7 @@ def main():
             AresInternetTool(api_key=os.getenv("ARES_API_KEY", None)),
             YFinanceTool()
         ]
-        myagent = AgentPro(model=os.getenv("OPENAI_API_KEY", None), tools=tools, max_iterations=20)
+        # myagent = AgentPro(model=os.getenv("OPENAI_API_KEY", None), tools=tools, max_iterations=20)
         
         query = input("Enter your Query : ")
         response = myagent.run(query)

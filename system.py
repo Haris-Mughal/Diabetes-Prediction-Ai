@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 sys.path.insert(0, os.path.dirname(__file__))
 
 load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENROUTER_API_KEY")
-os.environ["OPENAI_API_BASE"] = "https://openrouter.ai/api/v1"
+# os.environ["OPENAI_API_KEY"] = os.getenv("OPENROUTER_API_KEY")
+# os.environ["OPENAI_API_BASE"] = "https://openrouter.ai/api/v1"
 
 import streamlit as st
 import numpy as np
